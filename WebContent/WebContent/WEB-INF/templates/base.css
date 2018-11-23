@@ -1,0 +1,67 @@
+.baseformat{
+  font-family: Roboto,sans-serif;
+  color:black;
+  font-weight: normal;
+  font-size: 17px;
+  padding:5px;
+  background-color: white;
+  border-style: none;
+}
+button{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: green;
+  color: white;
+}
+.component{
+  margin-top: 50px;
+}
+.component-element{
+  margin-top: 10px;
+}
+input{
+	border-radius: 5px;
+	padding: 5px;
+}
+/* Style the navigation bar */
+.navbar {
+  width: 90%;
+  background-color: green;
+  overflow: auto;
+  font-weight: lighter;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 25px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  opacity: 0.5;
+}
+/* Current/active navbar link */
+.active {
+  font-weight: bold;
+  background-color: green.darker;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+
+.assign{
+	margin-bottom: 10px;
+}

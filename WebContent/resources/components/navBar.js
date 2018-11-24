@@ -37,7 +37,7 @@ Vue.component('navigation', {
         <h4 class="modal-title">Your projects:</h4>
       </div>
       <div v-for="project in navbarData.projects" class="modal-body">
-      	<img style="height: 50px;float: left;margin-right: 25px;" :src="project.image">
+      	<img :src="project.image">
         <a :href="'element?type=p&id='+ project.id" style="color: black;">{{project.name}}</a>
       </div>
       <div class="modal-footer">

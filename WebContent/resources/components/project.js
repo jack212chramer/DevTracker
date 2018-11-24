@@ -6,7 +6,8 @@ Vue.component('project', {
 	  },
 	  methods:{
 	        getData: function(){
-	            this.$http.get('getProjectData').then(function(response){
+	        	var id = document.getElementById("id").innerText;
+	            this.$http.get('getProjectData?id='+id).then(function(response){
 	                this.Project = response.data;
 	            }, function(error){
 	                console.log(error.statusText);
@@ -57,7 +58,7 @@ Vue.component('project', {
                 <p class="label">Description:</p>
               </div>
                       <div class="col-12" >
-                        <textarea class="normaltext element_input" cols="150">
+                        <textarea class="normaltext element_input" cols="150" rows="15">
                         {{Project.description}}
                         </textarea>
                       </div>

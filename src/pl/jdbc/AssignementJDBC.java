@@ -25,11 +25,11 @@ public class AssignementJDBC extends DatabaseConfig{
 		try{
 			connect();
 			rs = selectProjects(username);
-			list = addResultsToList(rs,list);
+			list = addResultsToListAndClose(rs,list);
 			rs = selectConcepts(username);
-			list = addResultsToList(rs,list);
+			list = addResultsToListAndClose(rs,list);
 			rs = selectTasks(username);
-			list = addResultsToList(rs,list);
+			list = addResultsToListAndClose(rs,list);
 			disconnect();
 		}catch(Exception e){
 			System.out.println(e);
@@ -40,33 +40,33 @@ public class AssignementJDBC extends DatabaseConfig{
 	
 	private ResultSet selectProjects(String username) throws SQLException{
 		stmt = null;
-		stmt = c.prepareStatement("SELECT * FROM assignements,projects WHERE username = ? AND assignements.element_type = 'p';");
+		stmt = c.prepareStatement("SELECT * FROM assignements,projects WHERE username = ? AND assignements.element_type = 'p' AND assignements.element_id = projects.id;");
 		stmt.setString(1, username);
 		return stmt.executeQuery();
 	}
 	
 	private ResultSet selectConcepts(String username) throws SQLException{
 		stmt = null;
-		stmt = c.prepareStatement("SELECT * FROM assignements,Concepts WHERE username = ? AND assignements.element_type = 'c';");
+		stmt = c.prepareStatement("SELECT * FROM assignements,Concepts WHERE username = ? AND assignements.element_type = 'c' AND assignements.element_id = concepts.id;");
 		stmt.setString(1, username);
 		return stmt.executeQuery();
 	}
 	
 	private ResultSet selectTasks(String username) throws SQLException{
 		stmt = null;
-		stmt = c.prepareStatement("SELECT * FROM assignements,tasks WHERE username = ? AND assignements.element_type = 't';");
+		stmt = c.prepareStatement("SELECT * FROM assignements,tasks WHERE username = ? AND assignements.element_type = 't' AND assignements.element_id = tasks.id;");
 		stmt.setString(1, username);
 		return stmt.executeQuery();
 	}
 	
 	private ResultSet selectSubtasks(String username) throws SQLException{
 		stmt = null;
-		stmt = c.prepareStatement("SELECT * FROM assignements,subtasks WHERE username = ? AND assignements.element_type = 's';");
+		stmt = c.prepareStatement("SELECT * FROM assignements,subtasks WHERE username = ? AND assignements.element_type = 's' AND assignements.element_id = subtasks.id;");
 		stmt.setString(1, username);
 		return stmt.executeQuery();
 	}
 	
-	private ArrayList<Assignement> addResultsToList(ResultSet rs, ArrayList<Assignement> list){
+	private ArrayList<Assignement> addResultsToListAndClose(ResultSet rs, ArrayList<Assignement> list){
 		try {
 			while(rs.next()){
 				Assignement assignement = new Assignement();
@@ -76,10 +76,12 @@ public class AssignementJDBC extends DatabaseConfig{
 				assignement.buildFullId();
 				list.add(assignement);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return list;
 	}
 	

@@ -1,15 +1,17 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
+  
     <div id="App">
       <navigation></navigation>
       <project></project>
     </div>
-
+    
+<span id = "id" hidden>${project.id}</span>
 
   </body>
 </html>

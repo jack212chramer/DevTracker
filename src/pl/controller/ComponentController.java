@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,10 +59,12 @@ public class ComponentController {
 	
 	@RequestMapping(value="/getProjectData")
 	@ResponseBody
-	public String getProjectData(Principal principal){
+	public String getProjectData(
+			@RequestParam(value="id") int id,
+			Principal principal){
 		
 		String username = principal.getName();
-		Project p = projectDao.getProjectById(username, 1);
+		Project p = projectDao.getProjectById(username, id);
 		return convertToJson(p);
 	}
 	
@@ -71,6 +74,16 @@ public class ComponentController {
 		
 		String username = principal.getName();
 		ArrayList<Concept> list = conceptDao.getConceptsUserHasAccessTo(username);
+		return convertToJson(list);
+	}
+	
+	@RequestMapping(value="/getPinnedConcepts")
+	@ResponseBody
+	public String getPinnedConcepts(
+			@RequestParam(value="id") int id,
+			Principal principal){
+		
+		ArrayList<Concept> list = conceptDao.getConceptspinnedToProject(id);
 		return convertToJson(list);
 	}
 

@@ -30,6 +30,7 @@ public class MainController {
 	
 	@Autowired
 	AssignementsDao assignementsDao;
+	
 		
 	@RequestMapping(value="/")
 	public String homepage(){
@@ -55,6 +56,10 @@ public class MainController {
 					mav = new ModelAndView(template,"concept",c);
 					break;
 				case 't': template = "task";
+					Task p = taskDao.getProjectById(principal.getName(), id);
+					mav = new ModelAndView(template,"task",t);
+					break;
+				case 's': template = "subtask";
 					Task p = taskDao.getProjectById(principal.getName(), id);
 					mav = new ModelAndView(template,"task",t);
 					break;

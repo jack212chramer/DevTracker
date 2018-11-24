@@ -26,6 +26,12 @@ public class ConceptDao {
 		return list;
 	}
 	
+	public ArrayList<Concept> getConceptspinnedToProject(int id){
+		ArrayList<Concept> list = conceptJDBC.selectConceptsFromDatabaseByProject(id);
+		list = completeProjectInformations(list);
+		return list;
+	}
+	
 	private ArrayList<Concept> completeProjectInformations(ArrayList<Concept> list){
 		for(int i =0;i<list.size();i++){
 			int project_id = list.get(i).getProject_id();

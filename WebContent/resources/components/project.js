@@ -1,13 +1,13 @@
 Vue.component('project', {
    data:function () {
 	    return {
-	    	projectData:''
+	    	Project:''
 	    }
 	  },
 	  methods:{
 	        getData: function(){
 	            this.$http.get('getProjectData').then(function(response){
-	                this.navbarData = response.data;
+	                this.Project = response.data;
 	            }, function(error){
 	                console.log(error.statusText);
 	            });
@@ -25,7 +25,7 @@ Vue.component('project', {
                 <img :src="Project.image" alt="project icon">
                 </div>
                 <div class="col-sm-11">
-                  <input type="text" name="project_name" class="normaltext element_input" style="font-size:25px;background-color:white;" value="{{Project.name}}" readonly>
+                  <input type="text" name="project_name" class="normaltext element_input" style="font-size:25px;background-color:white;" :value="Project.name" readonly>
                 </div>
                 <div class="row">
 
@@ -47,7 +47,7 @@ Vue.component('project', {
                 <p class="label">Version:</p>
               </div>
             <div class="col-sm-2">
-              <input type="text"  name="version" class="normaltext element_input" value="{{version}}" >
+              <input type="text"  name="version" class="normaltext element_input" value="version" >
             </div>
             </div>
 
@@ -57,7 +57,7 @@ Vue.component('project', {
                 <p class="label">Description:</p>
               </div>
                       <div class="col-12" >
-                        <textarea class="normaltext element_input" cols="150" rows="15">
+                        <textarea class="normaltext element_input" cols="150">
                         {{Project.description}}
                         </textarea>
                       </div>
@@ -69,16 +69,9 @@ Vue.component('project', {
 
 
 	  		</div>
-            <style>
-
-              .label{
-                margin: 25px;
-              }
-              img{
-                margin-top:25px;
-                height:50px;
-              }
-            </style>
+          
+          
+          <link rel="stylesheet" type="text/css" href="resources/css/project.css">
         </div>
         
 

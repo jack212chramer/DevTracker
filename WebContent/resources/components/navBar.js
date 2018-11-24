@@ -19,7 +19,7 @@ Vue.component('navigation', {
   template: 
 	  ` 
   <div class="navbar">
-  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Dashboard</a> 
+  <a class="active" href="/DevTracker"><i class="fa fa-fw fa-home"></i> Dashboard</a> 
   <a href="#" data-toggle="modal" data-target="#myModal"><i  class="fas fa-project-diagram"></i> Projects</a> 
   <a href="issues"><i  class="fas fa-bug"></i> Issues</a> 
   <a href="concepts"><i class="far fa-clipboard"></i></i> Concepts</a>
@@ -38,7 +38,7 @@ Vue.component('navigation', {
       </div>
       <div v-for="project in navbarData.projects" class="modal-body">
       	<img style="height: 50px;float: left;margin-right: 25px;" :src="project.image">
-        <a :href="'element?id='+ project.full_id" style="color: black;">{{project.name}}</a>
+        <a :href="'element?type=p&id='+ project.id" style="color: black;">{{project.name}}</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

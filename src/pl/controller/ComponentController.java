@@ -16,7 +16,9 @@ import pl.components.Navbar;
 import pl.components.NavbarBuilder;
 import pl.dao.AssignementsDao;
 import pl.dao.ConceptDao;
+import pl.dao.ProjectDao;
 import pl.dto.Concept;
+import pl.dto.Project;
 
 @Controller
 public class ComponentController {
@@ -32,6 +34,9 @@ public class ComponentController {
 	
 	@Autowired
 	ConceptDao conceptDao;
+	
+	@Autowired
+	ProjectDao projectDao;
 	
 	@RequestMapping(value="/getNavbarData")
 	@ResponseBody
@@ -49,6 +54,15 @@ public class ComponentController {
 		String username = principal.getName();
 		ArrayList<Assignement> list = assignementsDao.getAssignements(username);
 		return convertToJson(list);
+	}
+	
+	@RequestMapping(value="/getProjectData")
+	@ResponseBody
+	public String getProjectData(Principal principal){
+		
+		String username = principal.getName();
+		Project p = projectDao.getProjectById(username, 1);
+		return convertToJson(p);
 	}
 	
 	@RequestMapping(value="/getConcepts")

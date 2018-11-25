@@ -1,12 +1,21 @@
+.bordered{
+	border-style:solid none none solid;
+	border-color:green;
+	border-width:5px;
+	border-radius:5px;
+}
 .normaltext{
 	font-family: Roboto,sans-serif;
 	font-size: 17px;
 }
-
+.container{
+	margin-top:25px;
+	margin-bottom:25px;
+}
 .element_input{
-	margin: 25px 25px;
+	margin: 25px 5px;
 	border-style: none;
-	width: 100%;
+	width: 90%;
 	background-color: #eeeeee;
 }
 
@@ -17,6 +26,7 @@ img{
 input{
 	border-radius: 5px;
 	padding: 5px;
+	max-width:80%;
 }
 /* Style the navigation bar */
 .navbar {

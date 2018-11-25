@@ -20,7 +20,7 @@ Vue.component('project', {
   template:
 	  `
 	  <div class="project">
-        <div class="container">
+        <div class="container bordered">
             <div class="row">
               <div class="col-sm-1">
                 <img :src="Project.image" alt="project icon">

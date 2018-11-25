@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,14 +78,30 @@ public class ComponentController {
 		return convertToJson(list);
 	}
 	
-	@RequestMapping(value="/getPinnedConcepts")
+	@RequestMapping(value="/getPinnedElements")
 	@ResponseBody
 	public String getPinnedConcepts(
-			@RequestParam(value="id") int id,
-			Principal principal){
+			@RequestParam(value="type") char type,
+			@RequestParam(value="id") int id){
 		
-		ArrayList<Concept> list = conceptDao.getConceptspinnedToProject(id);
-		return convertToJson(list);
+		String json = "";
+		
+		switch(type){
+		case 'p':
+			ArrayList<Concept> list = conceptDao.getConceptspinnedToProject(id);
+			json = convertToJson(list);
+			break;
+	/*	case 'c': template = "concept";
+			Concept c = conceptDao.getProjectById(principal.getName(), id);
+			mav = new ModelAndView(template,"concept",c);
+			break;
+		case 't': template = "task";
+			Task p = taskDao.getProjectById(principal.getName(), id);
+			mav = new ModelAndView(template,"task",t);
+			break;
+			*/
+	}
+		return json;
 	}
 
 	

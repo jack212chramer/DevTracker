@@ -6,7 +6,10 @@ Vue.component('pinned', {
 	  },
 	  methods:{
 	        getData: function(){
-	            this.$http.get('getPinnedElements').then(function(response){
+	        	var type = document.getElementById("type").innerText;
+	        	var id = document.getElementById("id").innerText;
+	        	
+	            this.$http.get('getPinnedElements?type='+type+'&id='+id).then(function(response){
 	                this.pinnedData = response.data;
 	            }, function(error){
 	                console.log(error.statusText);
@@ -25,13 +28,13 @@ Vue.component('pinned', {
           <h3 class="pinnedWhite">Pinned concepts:</h3>
         </div>
             <div class="col-sm-12 a_pinned" v-for="pinned in pinnedData">
-            <a :href="'element?type='+pinned.element_type+'&id'+pinned.element_id" >{{pinned.name}}</a>
+            <a :href="'element?type=c&id='+pinned.id" >{{pinned.name}}</a>
             <a>{{pinned.assigned}}</a>
               <a>{{pinned.status}}</a>
             </div>
         </div>
 
-        <link rel="stylesheet" type="text/css" href="css/pinnedElements.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/pinnedElements.css">
     </div>
   `
 

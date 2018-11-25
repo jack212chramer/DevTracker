@@ -9,13 +9,14 @@
     <div id="App">
       <navigation></navigation>
       <project></project>
+      <pinned></pinned>
     </div>
     
 <span id = "id" hidden>${project.id}</span>
+<span id = "type" hidden>p</span>
 
   </body>
 </html>
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -28,6 +29,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/base.css">
 <script type="text/javascript" src="resources/components/navBar.js"></script>
 <script type="text/javascript" src="resources/components/project.js"></script>
+<script type="text/javascript" src="resources/components/pinned.js"></script>
 <script type="text/javascript">
 var vue = new Vue({ el: '#App'})
 </script>

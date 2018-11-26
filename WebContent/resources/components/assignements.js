@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-6">
           <h3>Your assignements:</h3>
-      <div class="card bg-success">
+      <div class="card" style="background-color:green;">
           <div class="card-body">
             <div v-for="ass in assignementsData" class="card assign">
             <a :href="'element?id='+ ass.id+'&type='+ass.element_type">

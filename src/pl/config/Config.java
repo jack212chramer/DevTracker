@@ -14,11 +14,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.components.NavbarBuilder;
 import pl.dao.AssignementsDao;
+import pl.dao.CommentDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
 import pl.dao.TaskDao;
 import pl.dao.UserDao;
 import pl.jdbc.AssignementJDBC;
+import pl.jdbc.CommentJDBC;
 import pl.jdbc.ConceptJDBC;
 import pl.jdbc.ProjectJDBC;
 import pl.jdbc.TaskJDBC;
@@ -101,5 +103,15 @@ public class Config implements WebMvcConfigurer{
 	@Bean
 	public TaskJDBC taskJDBC(){
 		return new TaskJDBC();
+	}
+	
+	@Bean
+	public CommentDao commentDao(){
+		return new CommentDao();
+	}
+	
+	@Bean
+	public CommentJDBC commentJDBC(){
+		return new CommentJDBC();
 	}
 }

@@ -50,7 +50,7 @@ Vue.component('gallery', {
   template: 
 	  `
 <div class="container bordered">
-
+<h3>Attached images:</h3>
   <!-- Full-width images with number text -->
   <div class="mySlides">
     <div class="numbertext">1 / 6</div>
@@ -69,11 +69,16 @@ Vue.component('gallery', {
   <!-- Thumbnail images -->
   <div class="row">
     <div class="column">
-      <img class="demo cursor bordered" src="https://thewallpaper.co/wp-content/uploads/2016/02/cute-beagle-dog-full-hd-wallpaper-images-new-best-desktop-background-download-free-cute-doggy-puffy-dogs-1600x1200-768x576.jpg" style="width:100%" @click="currentSlide(1)" alt="The Woods">
+      <img class="demo cursor bordered miniature" src="https://thewallpaper.co/wp-content/uploads/2016/02/cute-beagle-dog-full-hd-wallpaper-images-new-best-desktop-background-download-free-cute-doggy-puffy-dogs-1600x1200-768x576.jpg" style="width:100%" @click="currentSlide(1)" alt="The Woods">
     </div>
 
   </div>
   <link rel="stylesheet" type="text/css" href="resources/css/imageGallery.css">
+  
+<form action="/action_page.php" class="bordered container">
+  Select images: <input  type="file" name="img" multiple>
+  <input type="submit">
+</form>
 </div>
    `
 })

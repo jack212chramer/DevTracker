@@ -62,7 +62,9 @@
   padding: 2px 16px;
   color: white;
 }
-
+.miniature{
+	margin-left:15px;
+}
 .row:after {
   content: "";
   display: table;

@@ -11,6 +11,7 @@
       <project></project>
       <gallery></gallery>
       <pinned></pinned>
+      <comments></comments>
     </div>
     
 <span id = "id" hidden>${project.id}</span>
@@ -32,6 +33,7 @@
 <script type="text/javascript" src="resources/components/project.js"></script>
 <script type="text/javascript" src="resources/components/imageGallery.js"></script>
 <script type="text/javascript" src="resources/components/pinned.js"></script>
+<script type="text/javascript" src="resources/components/comments.js"></script>
 <script type="text/javascript">
 var vue = new Vue({ el: '#App'})
 </script>

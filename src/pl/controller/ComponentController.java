@@ -17,6 +17,7 @@ import pl.components.Assignement;
 import pl.components.Navbar;
 import pl.components.NavbarBuilder;
 import pl.dao.AssignementsDao;
+import pl.dao.CommentDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
 import pl.dto.Concept;
@@ -39,6 +40,9 @@ public class ComponentController {
 	
 	@Autowired
 	ProjectDao projectDao;
+	
+	@Autowired
+	CommentDao commentDao;
 	
 	@RequestMapping(value="/getNavbarData")
 	@ResponseBody
@@ -69,6 +73,7 @@ public class ComponentController {
 		return convertToJson(p);
 	}
 	
+	
 	@RequestMapping(value="/getConcepts")
 	@ResponseBody
 	public String getConcepts(Principal principal){
@@ -76,6 +81,18 @@ public class ComponentController {
 		String username = principal.getName();
 		ArrayList<Concept> list = conceptDao.getConceptsUserHasAccessTo(username);
 		return convertToJson(list);
+	}
+	
+	@RequestMapping(value="/getComments")
+	@ResponseBody
+	public String getComments(
+			@RequestParam(value="type") char type,
+			@RequestParam(value="id") int id){
+		
+	//	String json = "";
+		
+	//	commentDao.getCommentsForElement(id, Character.toString(type));
+		return convertToJson(commentDao.getCommentsForElement(id, Character.toString(type)));
 	}
 	
 	@RequestMapping(value="/getPinnedElements")

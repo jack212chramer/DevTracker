@@ -23,7 +23,7 @@ Vue.component('project', {
         <div class="container bordered">
             <div class="row">
               <div class="col-sm-1">
-                <img :src="Project.image" alt="project icon">
+                <img :src="Project.image" alt="project icon" style="margin-top:25px;">
                 </div>
                 <div class="col-sm-11">
                   <input type="text" name="project_name" class="normaltext element_input" style="font-size:25px;background-color:white;" :value="Project.name" readonly>

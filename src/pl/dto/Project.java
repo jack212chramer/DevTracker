@@ -7,6 +7,7 @@ public class Project {
 	private String description;
 	private String image;
 	private String full_id;
+	private String version;
 	
 	
 	
@@ -56,7 +57,13 @@ public class Project {
 		full_id = "p"+id;
 		return full_id;
 	}
-
+	public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	
 	
 	
 	

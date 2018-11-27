@@ -74,6 +74,7 @@ public class ProjectJDBC extends DatabaseConfig{
 			project.setName(rs.getString("name"));
 			project.setDescription(rs.getString("description"));
 			project.setImage(rs.getString("image"));
+			project.setVersion(rs.getString("version"));
 			list.add(project);
 		}
 		return list;

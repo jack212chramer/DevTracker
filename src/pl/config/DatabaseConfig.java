@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DatabaseConfig {
 
-	protected final String connectionPath = "jdbc:sqlite:C:/Users/User/eclipse-workspace/database/DevTracker";
+	protected final String connectionPath = "jdbc:sqlite:/home/jack212chramer/eclipse-workspace/database/DevTracker";
 }

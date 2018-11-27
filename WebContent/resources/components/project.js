@@ -48,7 +48,7 @@ Vue.component('project', {
                 <p class="label">Version:</p>
               </div>
             <div class="col-sm-2">
-              <input type="text"  name="version" class="normaltext element_input" value="version" >
+              <input type="text"  name="version" class="normaltext element_input" :value="Project.version" >
             </div>
             </div>
 

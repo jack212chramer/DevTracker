@@ -5,15 +5,15 @@
     <title></title>
   </head>
   <body>
-  
+
     <div id="App">
       <navigation></navigation>
-      <project></project>
+      <panel></panel>
       <gallery></gallery>
       <pinned></pinned>
       <comments></comments>
     </div>
-    
+
 <span id = "id" hidden>${element.id}</span>
 <span id = "type" hidden>${element.element_type}</span>
 
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="resources/css/base.css">
 <script type="text/javascript" src="resources/components/navBar.js"></script>
-<script type="text/javascript" src="resources/components/project.js"></script>
+<script type="text/javascript" src="resources/components/panel.js"></script>
 <script type="text/javascript" src="resources/components/imageGallery.js"></script>
 <script type="text/javascript" src="resources/components/pinned.js"></script>
 <script type="text/javascript" src="resources/components/comments.js"></script>

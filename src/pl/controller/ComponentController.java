@@ -72,6 +72,12 @@ public class ComponentController {
 		switch(type) {
 			case 'p': redirect+="getProjectData?id="+id;
 				break;
+			case 'c': redirect+="getConceptData?id="+id;
+				break;
+			case 't': redirect+="getTaskData?id="+id;
+				break;
+			case 's': redirect+="getSubtaskData?id="+id;
+				break;
 		}
 
 		return redirect;
@@ -85,6 +91,17 @@ public class ComponentController {
 		
 		String username = principal.getName();
 		Project p = projectDao.getProjectById(username, id);
+		return convertToJson(p);
+	}
+	
+	@RequestMapping(value="/getConceptData")
+	@ResponseBody
+	public String getConceptData(
+			@RequestParam(value="id") int id,
+			Principal principal){
+		
+		String username = principal.getName();
+		Concept p = conceptDao.getConceptById(id, username);
 		return convertToJson(p);
 	}
 	

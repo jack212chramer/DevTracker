@@ -27,9 +27,11 @@ Vue.component('panel', {
   template:
 	  `
 	  <div class="panel">
+	  <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+
         <div class="container bordered">
             <div class="row">
-              <div class="col-sm-1" v-if="elementData.type='p'">
+              <div class="col-sm-1" v-if="elementData.element_type=='p'">
                 <img :src="elementData.image" alt="element icon" style="margin-top:25px;">
                 </div>
                 <div class="col-sm-11">
@@ -38,10 +40,16 @@ Vue.component('panel', {
                 <div class="row">
 
                   <div class="col-sm-2">
-                    <p class="label">Created by:</p>
+                    <p class="label">Type:</p>
                   </div>
-                <div class="col-sm-2">
-                  <input type="text" id="createdBy" name="createdBy" class=" normaltext element_input" value="user" readonly>
+
+                  <div class="col-sm-2">
+
+                  <input v-if="elementData.element_type === 'p'" type="text" class=" normaltext element_input" value="Project" readonly>
+                <input v-if="elementData.element_type === 'c'" type="text" class=" normaltext element_input" value="Concept" readonly>
+                <input v-if="elementData.element_type === 't'" type="text" class=" normaltext element_input" value="Task" readonly>
+                <input v-if="elementData.element_type === 's'" type="text" class=" normaltext element_input" value="Subtask" readonly>
+
                 </div>
 
                 <div class="col-sm-2">
@@ -55,11 +63,51 @@ Vue.component('panel', {
                 <p class="label">Version:</p>
               </div>
             <div class="col-sm-2">
-              <form id="setVersion" method="post" >
+              <form id="setVersion" method="post" target="dummyframe">
               <input v-on:change="submitForm('setVersion')"  type="text"  name="version" class="normaltext element_input" :value="elementData.version" >
               </form>
             </div>
             </div>
+
+
+
+            <div class="row" v-if="elementData.element_type !='p'">
+
+              <div class="col-sm-2">
+                <p class="label">Priority:</p>
+              </div>
+            <div class="col-sm-2">
+
+              <form action="setPriority" method="post" target="dummyframe">
+              <select class="form-control" style="margin-top:22px;" name="priority" v-on:change="submitForm('setPriority')" :value=elementData.priority>
+                <option style="color:DarkRed;" value=5>Blocker</option>
+                <option style="color:red;" value=4>Very High</option>
+                <option style="color:orange;" value=3>High</option>
+                <option value=2>Medium</option>
+                <option style="color:green;" value=1>Low</option>
+                <option style="color:DarkGreen;" value=0>Very Low</option>
+              </select>
+            </form>
+            </div>
+
+            <div class="col-sm-2">
+              <p class="label">Status:</p>
+            </div>
+          <div class="col-sm-2">
+            <input type="text"  class="normaltext element_input" value="" readonly>
+          </div>
+
+          <div class="col-sm-2">
+            <p class="label">Assigned to:</p>
+          </div>
+        <div class="col-sm-2">
+          <form id="setVersion" method="post" target="dummyframe">
+          <input type="text"  class="normaltext element_input" value="" >
+          </form>
+        </div>
+        </div>
+
+
 
 
             <div class="row">

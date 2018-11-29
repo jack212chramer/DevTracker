@@ -57,17 +57,17 @@ public class MainController {
 					Project p = projectDao.getProjectById(principal.getName(), id);
 					mav = new ModelAndView(template,"element",p);
 					break;
-			/*	case 'c': template = "concept";
-					Concept c = conceptDao.getProjectById(principal.getName(), id);
-					mav = new ModelAndView(template,"concept",c);
-					break;
+				case 'c': template = "project";
+					Concept c = conceptDao.getConceptById(id, principal.getName());
+					mav = new ModelAndView(template,"element",c);
+					break;/*
 				case 't': template = "task";
 					Task p = taskDao.getProjectById(principal.getName(), id);
-					mav = new ModelAndView(template,"task",t);
+					mav = new ModelAndView(template,"element",t);
 					break;
 				case 's': template = "subtask";
 					Task p = taskDao.getProjectById(principal.getName(), id);
-					mav = new ModelAndView(template,"task",t);
+					mav = new ModelAndView(template,"element",t);
 					break;
 					*/
 			}

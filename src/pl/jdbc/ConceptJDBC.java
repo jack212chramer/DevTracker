@@ -65,6 +65,23 @@ public class ConceptJDBC extends DatabaseConfig{
 		}
 		return list;
 	}
+	
+	public ArrayList<Concept> selectConceptsFromDatabaseByProjectIdAndUsername(int id, String username){
+		ArrayList<Concept> list = null;
+		try{
+			connect();
+			stmt = c.prepareStatement("SELECT * FROM Concepts,roles WHERE id = ? AND concepts.id=roles.element_id "
+					+ "AND roles.element_type='c' AND roles.username=?;");
+			stmt.setInt(1, id);
+			stmt.setString(2, username);
+			rs = stmt.executeQuery();
+			list = prepareList(rs);
+			disconnect();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return list;
+	}
 		
 	private ArrayList<Concept> prepareList(ResultSet rs) throws SQLException{
 		ArrayList<Concept> list = new ArrayList<>();

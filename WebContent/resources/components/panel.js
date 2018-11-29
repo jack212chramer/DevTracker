@@ -1,9 +1,9 @@
 var id = document.getElementById("id").innerText;
 
-Vue.component('project', {
+Vue.component('panel', {
    data:function () {
 	    return {
-	    	Project:''
+	    	elementData:''
 	    }
 	  },
 	  methods:{
@@ -14,7 +14,7 @@ Vue.component('project', {
 	        getData: function(){
 
 	            this.$http.get('getProjectData?id='+id).then(function(response){
-	                this.Project = response.data;
+	                this.elementData = response.data;
 	            }, function(error){
 	                console.log(error.statusText);
 	            });
@@ -25,14 +25,14 @@ Vue.component('project', {
 	    },
   template:
 	  `
-	  <div class="project">
+	  <div class="panel">
         <div class="container bordered">
             <div class="row">
               <div class="col-sm-1">
-                <img :src="Project.image" alt="project icon" style="margin-top:25px;">
+                <img :src="elementData.image" alt="element icon" style="margin-top:25px;">
                 </div>
                 <div class="col-sm-11">
-                  <input type="text" name="project_name" class="normaltext element_input" style="font-size:25px;background-color:white;" :value="Project.name" readonly>
+                  <input type="text" name="element_name" class="normaltext element_input" style="font-size:25px;background-color:white;" :value="elementData.name" readonly>
                 </div>
                 <div class="row">
 
@@ -55,7 +55,7 @@ Vue.component('project', {
               </div>
             <div class="col-sm-2">
               <form id="setVersion" method="post" >
-              <input v-on:change="submitForm('setVersion')"  type="text"  name="version" class="normaltext element_input" :value="Project.version" >
+              <input v-on:change="submitForm('setVersion')"  type="text"  name="version" class="normaltext element_input" :value="elementData.version" >
               </form>
             </div>
             </div>
@@ -68,7 +68,7 @@ Vue.component('project', {
                       <div class="col-12" >
                       <form id="setDescription" method="post" >
                         <textarea name="description" v-on:change="submitForm('setDescription')" class="normaltext element_input" cols="150" rows="15">
-                        {{Project.description}}
+                        {{elementData.description}}
                         </textarea>
                         </form>
                       </div>

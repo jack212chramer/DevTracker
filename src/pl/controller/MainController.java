@@ -38,6 +38,12 @@ public class MainController {
 		return "dashboard";
 	}
 	
+	@RequestMapping(value="/test")
+	public String test(){
+
+		return "test";
+	}
+	
 	@RequestMapping(value="/element")
 	public ModelAndView element(
 			@RequestParam(value="type") char element_type,

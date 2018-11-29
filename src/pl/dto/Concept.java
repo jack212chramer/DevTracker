@@ -3,7 +3,7 @@ package pl.dto;
 public class Concept {
 
 	private int id;
-	private String element_type;
+	private String element_type = "c";
 	private String full_id;
 	private String name;
 	private String description;

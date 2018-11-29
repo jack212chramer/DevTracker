@@ -3,7 +3,7 @@ package pl.dto;
 public class Task {
 
 	private int id;
-	private String element_type;
+	private String element_type = "t";
 	private String full_id;
 	private String name;
 	private String description;

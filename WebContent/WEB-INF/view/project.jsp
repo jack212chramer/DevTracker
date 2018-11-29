@@ -14,8 +14,8 @@
       <comments></comments>
     </div>
     
-<span id = "id" hidden>${project.id}</span>
-<span id = "type" hidden>p</span>
+<span id = "id" hidden>${element.id}</span>
+<span id = "type" hidden>${element.element_type}</span>
 
   </body>
 </html>

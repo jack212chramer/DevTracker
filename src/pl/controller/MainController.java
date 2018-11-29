@@ -55,7 +55,7 @@ public class MainController {
 			switch(element_type){
 				case 'p': template = "project";
 					Project p = projectDao.getProjectById(principal.getName(), id);
-					mav = new ModelAndView(template,"project",p);
+					mav = new ModelAndView(template,"element",p);
 					break;
 			/*	case 'c': template = "concept";
 					Concept c = conceptDao.getProjectById(principal.getName(), id);

@@ -8,6 +8,7 @@ public class Project {
 	private String image;
 	private String full_id;
 	private String version;
+	private String element_type = "p";
 	
 	
 	
@@ -63,6 +64,13 @@ public class Project {
 	public void setVersion(String version) {
 		this.version = version;
 	}
+	public String getElement_type() {
+		return element_type;
+	}
+	public void setElement_type(String element_type) {
+		this.element_type = element_type;
+	}
+
 	
 	
 	

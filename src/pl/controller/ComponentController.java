@@ -62,6 +62,21 @@ public class ComponentController {
 		return convertToJson(list);
 	}
 	
+	@RequestMapping(value="/getElementData")
+	public String getElementData(
+			@RequestParam(value="id") int id,
+			@RequestParam(value="type") char type){
+		
+		String redirect = "redirect:/"; 
+		
+		switch(type) {
+			case 'p': redirect+="getProjectData?id="+id;
+				break;
+		}
+
+		return redirect;
+	}
+	
 	@RequestMapping(value="/getProjectData")
 	@ResponseBody
 	public String getProjectData(

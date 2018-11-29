@@ -1,4 +1,5 @@
 var id = document.getElementById("id").innerText;
+var type = document.getElementById("type").innerText;
 
 Vue.component('panel', {
    data:function () {
@@ -13,7 +14,7 @@ Vue.component('panel', {
           },
 	        getData: function(){
 
-	            this.$http.get('getProjectData?id='+id).then(function(response){
+	            this.$http.get('getElementData?id='+id+"&type="+type).then(function(response){
 	                this.elementData = response.data;
 	            }, function(error){
 	                console.log(error.statusText);
@@ -28,7 +29,7 @@ Vue.component('panel', {
 	  <div class="panel">
         <div class="container bordered">
             <div class="row">
-              <div class="col-sm-1">
+              <div class="col-sm-1" v-if="elementData.type='p'">
                 <img :src="elementData.image" alt="element icon" style="margin-top:25px;">
                 </div>
                 <div class="col-sm-11">

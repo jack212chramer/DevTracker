@@ -52,4 +52,8 @@ public class ConceptDao {
 		}
 		return list;
 	}
+	
+	public void updateConcept(Concept concept) {
+		conceptJDBC.updateConcept(concept);
+	}
 }

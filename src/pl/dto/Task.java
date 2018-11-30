@@ -49,8 +49,9 @@ public class Task {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	public String getWorkflow() {
-		return workflow;
+	public String[] getWorkflow() {
+		String[] parts = workflow.split(";");
+		return parts;
 	}
 	public void setWorkflow(String workflow) {
 		this.workflow = workflow;

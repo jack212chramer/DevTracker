@@ -65,6 +65,23 @@ public class ProjectJDBC extends DatabaseConfig{
 		}
 		return list;
 	}
+	
+	public void updateProject(Project project){
+		try{
+			connect();
+			stmt = c.prepareStatement("UPDATE projects SET name=?,description=?,image=?,version=? WHERE id = ?;");
+			stmt.setString(1, project.getName());
+			stmt.setString(2, project.getDescription());
+			stmt.setString(3, project.getImage());
+			stmt.setString(4, project.getVersion());
+			stmt.setInt(5, project.getId());
+			stmt.executeUpdate();
+			c.commit();
+			disconnect();
+		}catch(SQLException | ClassNotFoundException e){
+			System.out.println(e);
+		}
+	}
 		
 	private ArrayList<Project> prepareProjectList(ResultSet rs) throws SQLException{
 		ArrayList<Project> list = new ArrayList<>();

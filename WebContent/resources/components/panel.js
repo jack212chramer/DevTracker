@@ -19,7 +19,10 @@ Vue.component('panel', {
 	            }, function(error){
 	                console.log(error.statusText);
 	            });
-	        }
+	        },
+          doMath: function (index) {
+            return index+1
+          }
 	    },
 	    mounted: function () {
 	        this.getData();
@@ -63,7 +66,7 @@ Vue.component('panel', {
                 <p class="label">Version:</p>
               </div>
             <div class="col-sm-2">
-              <form id="setVersion" method="post" target="dummyframe">
+              <form id="setVersion" method="get" target="dummyframe">
               <input v-on:change="submitForm('setVersion')"  type="text"  name="version" class="normaltext element_input" :value="elementData.version" >
               </form>
             </div>
@@ -78,7 +81,7 @@ Vue.component('panel', {
               </div>
             <div class="col-sm-2">
 
-              <form action="setPriority" method="post" target="dummyframe">
+              <form action="setPriority" method="get" target="dummyframe">
               <select class="form-control" style="margin-top:22px;" name="priority" v-on:change="submitForm('setPriority')" :value=elementData.priority>
                 <option style="color:DarkRed;" value=5>Blocker</option>
                 <option style="color:red;" value=4>Very High</option>
@@ -94,7 +97,11 @@ Vue.component('panel', {
               <p class="label">Status:</p>
             </div>
           <div class="col-sm-2">
-            <input type="text"  class="normaltext element_input" value="" readonly>
+              <form action="setStatus" method="get" target="dummyframe">
+              <select class="form-control" style="margin-top:22px;" name="status" v-on:change="submitForm('setStatus')" >
+                <option v-for="(status,index) in elementData.workflow" v-bind:style="{ color: 'hsl('+index*90/elementData.workflow.length+', 100%, 25%)'}" :value="doMath(index)" :selected="elementData.status==index">{{status}}</option>
+              </select>
+            </form>
           </div>
 
           <div class="col-sm-2">
@@ -115,7 +122,7 @@ Vue.component('panel', {
                 <p class="label">Description:</p>
               </div>
                       <div class="col-12" >
-                      <form id="setDescription" method="post" >
+                      <form id="setDescription" method="get" >
                         <textarea name="description" v-on:change="submitForm('setDescription')" class="normaltext element_input" cols="150" rows="15">
                         {{elementData.description}}
                         </textarea>

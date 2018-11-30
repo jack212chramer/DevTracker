@@ -22,4 +22,8 @@ public class ProjectDao {
 		 Project p = projectJDBC.selectProjectsFromDatabaseByUserRoleAndId(username, id).get(0);
 		 return p;
 	}
+	
+	public void updateProject(Project project) {
+		projectJDBC.updateProject(project);
+	}
 }

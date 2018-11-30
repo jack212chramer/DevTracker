@@ -82,6 +82,25 @@ public class ConceptJDBC extends DatabaseConfig{
 		}
 		return list;
 	}
+	
+	public void updateConcept(Concept concept){
+		try{
+			connect();
+			stmt = c.prepareStatement("UPDATE concepts SET name=?,description=?,version=?,status=?,priority=?,project_id=? WHERE id=?;");
+			stmt.setString(1, concept.getName());
+			stmt.setString(2, concept.getDescription());
+			stmt.setString(3, concept.getVersion());
+			stmt.setString(4, concept.getStatus());
+			stmt.setInt(5, concept.getPriority());
+			stmt.setInt(6, concept.getProject_id());
+			stmt.setInt(7, concept.getId());
+			stmt.executeUpdate();
+			c.commit();
+			disconnect();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
 		
 	private ArrayList<Concept> prepareList(ResultSet rs) throws SQLException{
 		ArrayList<Concept> list = new ArrayList<>();

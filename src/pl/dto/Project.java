@@ -70,7 +70,6 @@ public class Project {
 	public void setElement_type(String element_type) {
 		this.element_type = element_type;
 	}
-
 	
 	
 	

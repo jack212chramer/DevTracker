@@ -129,7 +129,7 @@ public class ComponentController {
 	
 	@RequestMapping(value="/getPinnedElements")
 	@ResponseBody
-	public String getPinnedConcepts(
+	public String getPinnedElements(
 			@RequestParam(value="type") char type,
 			@RequestParam(value="id") int id){
 		

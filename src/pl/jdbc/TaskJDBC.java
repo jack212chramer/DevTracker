@@ -87,7 +87,7 @@ public class TaskJDBC extends DatabaseConfig{
 	public void updateTask(Task task) {
 		try{
 			connect();
-			stmt = c.prepareStatement("UPDATE tasks SET name=?,description=?,version=?,status=?,priority=?concept_id=? WHERE id = ?;");
+			stmt = c.prepareStatement("UPDATE tasks SET name=?,description=?,version=?,status=?,priority=?,concept_id=? WHERE id = ?;");
 			stmt.setString(1, task.getName());
 			stmt.setString(2, task.getDescription());
 			stmt.setString(3, task.getVersion());

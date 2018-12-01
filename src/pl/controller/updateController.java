@@ -69,7 +69,97 @@ public class updateController {
 			subtaskDao.updateSubtask(s);
 			break;
 		}
+	}
+	
+	@RequestMapping(value="/setPriority")
+	public void setPriority(
+			Principal principal,
+			@RequestParam(value="priority")int priority,
+			@RequestParam(value="type")char type,
+			@RequestParam(value="id")int id){
 		
+		String username = principal.getName();
+		
+		switch(type) {
+		case 'c': 
+			Concept c = conceptDao.getConceptById(id, username);
+			c.setPriority(priority);
+			conceptDao.updateConcept(c);
+			break;
+		case 't': 
+			Task t = taskDao.getTaskById(id, username);
+			t.setPriority(priority);
+			taskDao.updateTask(t);
+			break;
+		case 's': 
+			Subtask s = subtaskDao.getSubtaskById(id, username);
+			s.setPriority(priority);
+			subtaskDao.updateSubtask(s);
+			break;
+		}
+}
+		
+		@RequestMapping(value="/setStatus")
+		public void setStatus(
+				Principal principal,
+				@RequestParam(value="status")int statusInt,
+				@RequestParam(value="type")char type,
+				@RequestParam(value="id")int id){
+			
+			String username = principal.getName();
+			statusInt-=1;
+			String status = Integer.toString(statusInt);
+			
+			switch(type) {
+			case 'c': 
+				Concept c = conceptDao.getConceptById(id, username);
+				c.setStatus(status);
+				conceptDao.updateConcept(c);
+				break;
+			case 't': 
+				Task t = taskDao.getTaskById(id, username);
+				t.setStatus(status);
+				taskDao.updateTask(t);
+				break;
+			case 's': 
+				Subtask s = subtaskDao.getSubtaskById(id, username);
+				s.setStatus(status);
+				subtaskDao.updateSubtask(s);
+				break;
+			}
+	}
+		
+		@RequestMapping(value="/setDescription")
+		public void setDescription(
+				Principal principal,
+				@RequestParam(value="description")String status,
+				@RequestParam(value="type")char type,
+				@RequestParam(value="id")int id){
+			
+			String username = principal.getName();
+			
+			switch(type) {
+			case 'p': 
+				Project p = projectDao.getProjectById(username, id);
+				p.setDescription(status);
+				projectDao.updateProject(p);
+				break;
+			case 'c': 
+				Concept c = conceptDao.getConceptById(id, username);
+				c.setDescription(status);
+				conceptDao.updateConcept(c);
+				break;
+			case 't': 
+				Task t = taskDao.getTaskById(id, username);
+				t.setDescription(status);
+				taskDao.updateTask(t);
+				break;
+			case 's': 
+				Subtask s = subtaskDao.getSubtaskById(id, username);
+				s.setDescription(status);
+				subtaskDao.updateSubtask(s);
+				break;
+			}
 	}
 	
 }

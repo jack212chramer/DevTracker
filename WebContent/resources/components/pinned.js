@@ -22,10 +22,10 @@ Vue.component('pinned', {
   template:
 	  `
 
-        <div class="container pinned" v-if="elementData.element_type === 's'">
+        <div class="container pinned" v-if="pinnedData.element_type != 's'">
         <div class="row pinnedBackground normaltext" style="border-radius:5px;">
           <div class="col-sm-12" >
-          <h3 class="pinnedWhite">Pinned concepts:</h3>
+          <h3 class="pinnedWhite">Pinned elements:</h3>
         </div>
             <div class="col-sm-12 a_pinned" v-for="pinned in pinnedData">
             <a :href="'element?type='+pinned.element_type+'&id='+pinned.id" >{{pinned.name}}</a>

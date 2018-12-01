@@ -88,7 +88,7 @@ public class SubtaskJDBC extends DatabaseConfig{
 	public void updateSubtask(Subtask task) {
 		try{
 			connect();
-			stmt = c.prepareStatement("UPDATE Subtasks SET name=?,description=?,version=?,status=?,priority=?task_id=? WHERE id = ?;");
+			stmt = c.prepareStatement("UPDATE Subtasks SET name=?,description=?,version=?,status=?,priority=?,task_id=? WHERE id = ?;");
 			stmt.setString(1, task.getName());
 			stmt.setString(2, task.getDescription());
 			stmt.setString(3, task.getVersion());

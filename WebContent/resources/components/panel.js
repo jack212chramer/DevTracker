@@ -101,10 +101,12 @@ Vue.component('panel', {
               <p class="label">Status:</p>
             </div>
           <div class="col-sm-2">
-              <form action="setStatus" method="get" target="dummyframe">
+              <form id="setStatus" action="setStatus" method="get" target="dummyframe">
               <select class="form-control" style="margin-top:22px;" name="status" v-on:change="submitForm('setStatus')" >
                 <option v-for="(status,index) in elementData.workflow" v-bind:style="{ color: 'hsl('+index*90/elementData.workflow.length+', 100%, 25%)'}" :value="doMath(index)" :selected="elementData.status==index">{{status}}</option>
               </select>
+              <input name="type" :value="elementData.element_type" hidden>
+              <input name="id" :value="elementData.id" hidden>
             </form>
           </div>
 
@@ -126,10 +128,12 @@ Vue.component('panel', {
                 <p class="label">Description:</p>
               </div>
                       <div class="col-12" >
-                      <form id="setDescription" method="get" >
+                      <form action="setDescription" id="setDescription" method="get" target="dummyframe">
                         <textarea name="description" v-on:change="submitForm('setDescription')" class="normaltext element_input" cols="150" rows="15">
                         {{elementData.description}}
                         </textarea>
+                        <input name="type" :value="elementData.element_type" hidden>
+                        <input name="id" :value="elementData.id" hidden>
                         </form>
                       </div>
               </div>

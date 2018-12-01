@@ -17,7 +17,7 @@
   </div>
 
   <span id = "id" hidden>1</span>
-  <span id = "type" hidden>c</span>
+  <span id = "type" hidden>t</span>
 
 
 

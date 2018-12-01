@@ -1,9 +1,9 @@
 package pl.dto;
 
-public class Concept {
+public class Subtask {
 
 	private int id;
-	private String element_type = "c";
+	private String element_type = "s";
 	private String full_id;
 	private String name;
 	private String description;
@@ -11,12 +11,13 @@ public class Concept {
 	private String workflow;
 	private String status;
 	private int priority;
+	private int task_id;
+	private int concept_id;
+	private String concept_name;
 	private int project_id;
 	private String project_name;
 	private String project_image;
 	
-	
-	public Concept(){}
 	
 	
 	public int getId() {
@@ -30,10 +31,6 @@ public class Concept {
 	}
 	public void setElement_type(String element_type) {
 		this.element_type = element_type;
-	}
-	public String getFull_id() {
-		full_id = element_type+id;
-		return full_id;
 	}
 	public String getName() {
 		return name;
@@ -78,38 +75,46 @@ public class Concept {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-
-
+	public int getConcept_id() {
+		return concept_id;
+	}
+	public void setConcept_id(int concept_id) {
+		this.concept_id = concept_id;
+	}
+	public String getConcept_name() {
+		return concept_name;
+	}
+	public void setConcept_name(String concept_name) {
+		this.concept_name = concept_name;
+	}
+	public String getFull_id() {
+		full_id = element_type + id;
+		return full_id;
+	}
 	public int getProject_id() {
 		return project_id;
 	}
-
-
 	public void setProject_id(int project_id) {
 		this.project_id = project_id;
 	}
-
-
 	public String getProject_name() {
 		return project_name;
 	}
-
-
 	public void setProject_name(String project_name) {
 		this.project_name = project_name;
 	}
-
-
 	public String getProject_image() {
 		return project_image;
 	}
-
-
 	public void setProject_image(String project_image) {
 		this.project_image = project_image;
 	}
-	
-	
-	
+	public int getTask_id() {
+		return task_id;
+	}
+	public void setTask_id(int task_id) {
+		this.task_id = task_id;
+	}
+
 	
 }

@@ -20,8 +20,12 @@ import pl.dao.AssignementsDao;
 import pl.dao.CommentDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
+import pl.dao.SubtaskDao;
+import pl.dao.TaskDao;
 import pl.dto.Concept;
 import pl.dto.Project;
+import pl.dto.Subtask;
+import pl.dto.Task;
 
 @Controller
 public class ComponentController {
@@ -43,6 +47,12 @@ public class ComponentController {
 	
 	@Autowired
 	CommentDao commentDao;
+	
+	@Autowired
+	TaskDao taskDao;
+	
+	@Autowired
+	SubtaskDao subtaskDao;
 	
 	@RequestMapping(value="/getNavbarData")
 	@ResponseBody
@@ -105,6 +115,28 @@ public class ComponentController {
 		return convertToJson(p);
 	}
 	
+	@RequestMapping(value="/getTaskData")
+	@ResponseBody
+	public String getTaskData(
+			@RequestParam(value="id") int id,
+			Principal principal){
+		
+		String username = principal.getName();
+		Task p = taskDao.getTaskById(id, username);
+		return convertToJson(p);
+	}
+	
+	@RequestMapping(value="/getSubtaskData")
+	@ResponseBody
+	public String getSubtaskData(
+			@RequestParam(value="id") int id,
+			Principal principal){
+		
+		String username = principal.getName();
+		Subtask p = subtaskDao.getSubtaskById(id, username);
+		return convertToJson(p);
+	}
+	
 	
 	@RequestMapping(value="/getConcepts")
 	@ResponseBody
@@ -112,6 +144,24 @@ public class ComponentController {
 		
 		String username = principal.getName();
 		ArrayList<Concept> list = conceptDao.getConceptsUserHasAccessTo(username);
+		return convertToJson(list);
+	}
+	
+	@RequestMapping(value="/getTasks")
+	@ResponseBody
+	public String getTasks(Principal principal){
+		
+		String username = principal.getName();
+		ArrayList<Task> list = taskDao.getTasksUserHasAccessTo(username);
+		return convertToJson(list);
+	}
+	
+	@RequestMapping(value="/getSubtasks")
+	@ResponseBody
+	public String getSubtasks(Principal principal){
+		
+		String username = principal.getName();
+		ArrayList<Subtask> list = subtaskDao.getSubtasksUserHasAccessTo(username);
 		return convertToJson(list);
 	}
 	
@@ -140,15 +190,15 @@ public class ComponentController {
 			ArrayList<Concept> list = conceptDao.getConceptspinnedToProject(id);
 			json = convertToJson(list);
 			break;
-	/*	case 'c': template = "concept";
-			Concept c = conceptDao.getProjectById(principal.getName(), id);
-			mav = new ModelAndView(template,"concept",c);
+		case 'c': 
+			ArrayList<Task> taskList = taskDao.getTasksspinnedToConcept(id);
+			json = convertToJson(taskList);
 			break;
-		case 't': template = "task";
-			Task p = taskDao.getProjectById(principal.getName(), id);
-			mav = new ModelAndView(template,"task",t);
+		case 't': 
+			ArrayList<Subtask> subtaskList = subtaskDao.getTasksspinnedToConcept(id);
+			json = convertToJson(subtaskList);
 			break;
-			*/
+			
 	}
 		return json;
 	}

@@ -8,13 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import pl.dto.Concept;
 import pl.dto.Project;
+import pl.dto.Subtask;
 import pl.dto.Task;
 import pl.jdbc.ConceptJDBC;
 import pl.jdbc.ProjectJDBC;
+import pl.jdbc.SubtaskJDBC;
 import pl.jdbc.TaskJDBC;
 
 @Repository
-public class TaskDao {
+public class SubtaskDao {
 	
 	@Autowired
 	ConceptJDBC conceptJDBC;
@@ -23,32 +25,33 @@ public class TaskDao {
 	TaskJDBC taskJDBC;
 	
 	@Autowired
+	SubtaskJDBC subtaskJDBC;
+	
+	@Autowired
 	ProjectJDBC projectJDBC;
 	
 	private int project_id;
 	
-	public ArrayList<Task> getTasksUserHasAccessTo(String username){
-		ArrayList<Task> list = taskJDBC.selectProjectsFromDatabaseByUserRole(username);
-		list = completeConceptInformations(list);
-		//list = completeProjectInformations(list);
+	public ArrayList<Subtask> getSubtasksUserHasAccessTo(String username){
+		ArrayList<Subtask> list = subtaskJDBC.selectPSubtasksFromDatabaseByUserRole(username);
 		return list;
 	}
 	
-	public ArrayList<Task> getTasksspinnedToConcept(int id){
-		ArrayList<Task> list = taskJDBC.selectTasksFromDatabaseByConcept(id);
-		list = completeConceptInformations(list);
+	public ArrayList<Subtask> getTasksspinnedToConcept(int id){
+		ArrayList<Subtask> list = subtaskJDBC.selectSubtasksFromDatabaseByTask(id);
+		
 		return list;
 	}
 	
-	public Task getTaskById(int id, String username){
-		ArrayList<Task> list = taskJDBC.selectTasksFromDatabaseByIdAndUsername(id, username);
+	public Subtask getSubtaskById(int id, String username){
+		ArrayList<Subtask> list = subtaskJDBC.selectSubtasksFromDatabaseByIdAndUsername(id, username);
 		//list = completeProjectInformations(list);
-		list = completeConceptInformations(list);
+		
 		return list.get(0);
 	}
 	
-	public void updateTask(Task task) {
-		taskJDBC.updateTask(task);
+	public void updateSubtask(Subtask task) {
+		subtaskJDBC.updateSubtask(task);
 	}
 	
 	private ArrayList<Task> completeConceptInformations(ArrayList<Task> list){

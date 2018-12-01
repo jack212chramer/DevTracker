@@ -50,7 +50,13 @@ public class Task {
 		this.version = version;
 	}
 	public String[] getWorkflow() {
-		String[] parts = workflow.split(";");
+		String[] parts;
+		try {
+			 parts = workflow.split(";");
+		}catch(NullPointerException e) {
+			 parts = new String[]{"empty"};
+			}
+		
 		return parts;
 	}
 	public void setWorkflow(String workflow) {

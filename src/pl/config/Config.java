@@ -17,12 +17,14 @@ import pl.dao.AssignementsDao;
 import pl.dao.CommentDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
+import pl.dao.SubtaskDao;
 import pl.dao.TaskDao;
 import pl.dao.UserDao;
 import pl.jdbc.AssignementJDBC;
 import pl.jdbc.CommentJDBC;
 import pl.jdbc.ConceptJDBC;
 import pl.jdbc.ProjectJDBC;
+import pl.jdbc.SubtaskJDBC;
 import pl.jdbc.TaskJDBC;
 import pl.jdbc.UserJDBC;
 
@@ -103,6 +105,16 @@ public class Config implements WebMvcConfigurer{
 	@Bean
 	public TaskJDBC taskJDBC(){
 		return new TaskJDBC();
+	}
+	
+	@Bean
+	public SubtaskDao subtaskDao(){
+		return new SubtaskDao();
+	}
+	
+	@Bean
+	public SubtaskJDBC subtaskJDBC(){
+		return new SubtaskJDBC();
 	}
 	
 	@Bean

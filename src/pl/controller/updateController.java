@@ -11,9 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.dao.AssignementsDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
+import pl.dao.SubtaskDao;
 import pl.dao.TaskDao;
 import pl.dto.Concept;
 import pl.dto.Project;
+import pl.dto.Subtask;
 import pl.dto.Task;
 
 @Controller
@@ -27,6 +29,9 @@ public class updateController {
 	
 	@Autowired
 	TaskDao taskDao;
+	
+	@Autowired
+	SubtaskDao subtaskDao;
 	
 	@Autowired
 	AssignementsDao assignementsDao;
@@ -53,9 +58,18 @@ public class updateController {
 			c.setVersion(version);
 			conceptDao.updateConcept(c);
 			break;
+		case 't': 
+			Task t = taskDao.getTaskById(id, username);
+			t.setVersion(version);
+			taskDao.updateTask(t);
+			break;
+		case 's': 
+			Subtask s = subtaskDao.getSubtaskById(id, username);
+			s.setVersion(version);
+			subtaskDao.updateSubtask(s);
+			break;
 		}
 		
-
 	}
 	
 }

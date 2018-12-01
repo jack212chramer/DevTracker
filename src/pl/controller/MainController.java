@@ -11,9 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.dao.AssignementsDao;
 import pl.dao.ConceptDao;
 import pl.dao.ProjectDao;
+import pl.dao.SubtaskDao;
 import pl.dao.TaskDao;
 import pl.dto.Concept;
 import pl.dto.Project;
+import pl.dto.Subtask;
 import pl.dto.Task;
 
 @Controller
@@ -27,6 +29,9 @@ public class MainController {
 	
 	@Autowired
 	TaskDao taskDao;
+	
+	@Autowired
+	SubtaskDao subtaskDao;
 	
 	@Autowired
 	AssignementsDao assignementsDao;
@@ -49,27 +54,27 @@ public class MainController {
 			@RequestParam(value="type") char element_type,
 			@RequestParam(value="id") int id,
 			Principal principal){
-			String template = "";
+			String template = "project";
 			ModelAndView mav = null;
 			
 			switch(element_type){
-				case 'p': template = "project";
+				case 'p': 
 					Project p = projectDao.getProjectById(principal.getName(), id);
 					mav = new ModelAndView(template,"element",p);
 					break;
-				case 'c': template = "project";
+				case 'c': 
 					Concept c = conceptDao.getConceptById(id, principal.getName());
 					mav = new ModelAndView(template,"element",c);
-					break;/*
-				case 't': template = "task";
-					Task p = taskDao.getProjectById(principal.getName(), id);
+					break;
+				case 't': 
+					Task t = taskDao.getTaskById(id, principal.getName());
 					mav = new ModelAndView(template,"element",t);
 					break;
-				case 's': template = "subtask";
-					Task p = taskDao.getProjectById(principal.getName(), id);
-					mav = new ModelAndView(template,"element",t);
+				case 's': 
+					Subtask s = subtaskDao.getSubtaskById(id, principal.getName());
+					mav = new ModelAndView(template,"element",s);
 					break;
-					*/
+					
 			}
 			
 		return mav;

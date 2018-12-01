@@ -11,21 +11,22 @@ import org.springframework.stereotype.Component;
 
 import pl.config.DatabaseConfig;
 import pl.dto.Concept;
+import pl.dto.Subtask;
 import pl.dto.Task;
 
 @Component
-public class TaskJDBC extends DatabaseConfig{
+public class SubtaskJDBC extends DatabaseConfig{
 	
 	private Connection c;
 	private PreparedStatement stmt = null;
 	private ResultSet rs;
 	
 	
-	public ArrayList<Task> selectProjectsFromDatabaseByUserRole(String username){
-		ArrayList<Task> list = null;
+	public ArrayList<Subtask> selectPSubtasksFromDatabaseByUserRole(String username){
+		ArrayList<Subtask> list = null;
 		try{
 			connect();
-			stmt = c.prepareStatement("SELECT * FROM Tasks,roles WHERE roles.username = ? AND roles.element_id = Tasks.id AND roles.element_type = Tasks.element_type;");
+			stmt = c.prepareStatement("SELECT * FROM subasks,roles WHERE roles.username = ? AND roles.element_id = subtasks.id AND roles.element_type = subtasks.element_type;");
 			stmt.setString(1, username);
 			rs = stmt.executeQuery();
 			list = prepareList(rs);
@@ -36,11 +37,11 @@ public class TaskJDBC extends DatabaseConfig{
 		return list;
 	}
 	
-	public ArrayList<Task> selectTasksFromDatabaseByConcept(int id){
-		ArrayList<Task> list = null;
+	public ArrayList<Subtask> selectSubtasksFromDatabaseByTask(int id){
+		ArrayList<Subtask> list = null;
 		try{
 			connect();
-			stmt = c.prepareStatement("SELECT * FROM tasks WHERE concept_id = ?;");
+			stmt = c.prepareStatement("SELECT * FROM Subtasks WHERE task_id = ?;");
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			list = prepareList(rs);
@@ -52,12 +53,12 @@ public class TaskJDBC extends DatabaseConfig{
 	}
 	
 	
-	public ArrayList<Task> selectTasksFromDatabaseByIdAndUsername(int id, String username){
-		ArrayList<Task> list = null;
+	public ArrayList<Subtask> selectSubtasksFromDatabaseByIdAndUsername(int id, String username){
+		ArrayList<Subtask> list = null;
 		try{
 			connect();
-			stmt = c.prepareStatement("SELECT * FROM tasks,roles WHERE id = ? AND tasks.id=roles.element_id "
-					+ "AND roles.element_type='t' AND roles.username=?;");
+			stmt = c.prepareStatement("SELECT * FROM Subtasks,roles WHERE id = ? AND Subtasks.id=roles.element_id "
+					+ "AND roles.element_type='s' AND roles.username=?;");
 			stmt.setInt(1, id);
 			stmt.setString(2, username);
 			rs = stmt.executeQuery();
@@ -69,11 +70,11 @@ public class TaskJDBC extends DatabaseConfig{
 		return list;
 	}
 		
-	public ArrayList<Task> selectProjectsFromDatabaseById(int id) throws SQLException{
-		ArrayList<Task> list = null;
+	public ArrayList<Subtask> selectSubtasksFromDatabaseById(int id) throws SQLException{
+		ArrayList<Subtask> list = null;
 		try{
 			connect();
-			stmt = c.prepareStatement("SELECT * FROM Tasks WHERE id = ?;");
+			stmt = c.prepareStatement("SELECT * FROM Subtasks WHERE id = ?;");
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			list = prepareList(rs);
@@ -84,10 +85,10 @@ public class TaskJDBC extends DatabaseConfig{
 		return list;
 	}
 	
-	public void updateTask(Task task) {
+	public void updateSubtask(Subtask task) {
 		try{
 			connect();
-			stmt = c.prepareStatement("UPDATE tasks SET name=?,description=?,version=?,status=?,priority=?concept_id=? WHERE id = ?;");
+			stmt = c.prepareStatement("UPDATE Subtasks SET name=?,description=?,version=?,status=?,priority=?task_id=? WHERE id = ?;");
 			stmt.setString(1, task.getName());
 			stmt.setString(2, task.getDescription());
 			stmt.setString(3, task.getVersion());
@@ -103,10 +104,10 @@ public class TaskJDBC extends DatabaseConfig{
 		}
 	}
 		
-	private ArrayList<Task> prepareList(ResultSet rs) throws SQLException{
-		ArrayList<Task> list = new ArrayList<>();
+	private ArrayList<Subtask> prepareList(ResultSet rs) throws SQLException{
+		ArrayList<Subtask> list = new ArrayList<>();
 		while(rs.next()){
-			Task task = new Task();
+			Subtask task = new Subtask();
 			task.setId(rs.getInt("id"));
 			task.setName(rs.getString("name"));
 			task.setDescription(rs.getString("description"));
@@ -114,7 +115,7 @@ public class TaskJDBC extends DatabaseConfig{
 			task.setWorkflow(rs.getString("workflow"));
 			task.setStatus(rs.getString("status"));
 			task.setVersion(rs.getString("version"));
-			task.setConcept_id(rs.getInt("concept_id"));
+			task.setTask_id(rs.getInt("task_id"));
 			list.add(task);
 		}
 		return list;

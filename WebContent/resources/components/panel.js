@@ -9,7 +9,7 @@ Vue.component('panel', {
 	  },
 	  methods:{
           submitForm: function(formAction) {
-            document.getElementById(formAction).action = formAction+"?id="+id+"&type=p";
+            //document.getElementById(formAction).action = formAction+"?id="+id;
             document.getElementById(formAction).submit();
           },
 	        getData: function(){
@@ -66,8 +66,10 @@ Vue.component('panel', {
                 <p class="label">Version:</p>
               </div>
             <div class="col-sm-2">
-              <form id="setVersion" method="get" target="dummyframe">
+              <form id="setVersion" method="get"  target="dummyframe" action="setVersion">
               <input v-on:change="submitForm('setVersion')"  type="text"  name="version" class="normaltext element_input" :value="elementData.version" >
+              <input name="type" :value="elementData.element_type" hidden>
+              <input name="id" :value="elementData.id" hidden>
               </form>
             </div>
             </div>
@@ -81,7 +83,7 @@ Vue.component('panel', {
               </div>
             <div class="col-sm-2">
 
-              <form action="setPriority" method="get" target="dummyframe">
+              <form id="setPriority" action="setPriority" method="get" target="dummyframe">
               <select class="form-control" style="margin-top:22px;" name="priority" v-on:change="submitForm('setPriority')" :value=elementData.priority>
                 <option style="color:DarkRed;" value=5>Blocker</option>
                 <option style="color:red;" value=4>Very High</option>
@@ -90,6 +92,8 @@ Vue.component('panel', {
                 <option style="color:green;" value=1>Low</option>
                 <option style="color:DarkGreen;" value=0>Very Low</option>
               </select>
+              <input name="type" :value="elementData.element_type" hidden>
+              <input name="id" :value="elementData.id" hidden>
             </form>
             </div>
 
